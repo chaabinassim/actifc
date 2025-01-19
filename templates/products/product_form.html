@@ -1,0 +1,196 @@
+{% extends "base/base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<h1 class="mb-3">{{ view.object.pk|default:"Create" }} Product</h1>
+
+<!-- Product Form wrapped in Bootstrap card -->
+<div class="card" style="max-width: 700px; margin-top: 20px;">
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Product Name Field -->
+            <div class="mb-3">
+                <label for="{{ form.name.id_for_label }}" class="form-label">Product Name</label>
+                {{ form.name|add_class:"form-control form-icon-input" }}
+                {% if form.name.errors %}
+                    <div class="text-danger">
+                        {% for error in form.name.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Subcategory Field -->
+            <div class="mb-3">
+                <label for="{{ form.sub_category.id_for_label }}" class="form-label">Subcategory</label>
+                {{ form.sub_category|add_class:"form-control form-icon-input" }}
+                {% if form.sub_category.errors %}
+                    <div class="text-danger">
+                        {% for error in form.sub_category.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Description Field -->
+            <div class="mb-3">
+                <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
+                {{ form.description|add_class:"form-control" }}
+                {% if form.description.errors %}
+                    <div class="text-danger">
+                        {% for error in form.description.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Unit of Measurement and Material on the same line -->
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="{{ form.unit_of_measurement.id_for_label }}" class="form-label">Unit of Measurement</label>
+                    {{ form.unit_of_measurement|add_class:"form-control" }}
+                    {% if form.unit_of_measurement.errors %}
+                        <div class="text-danger">
+                            {% for error in form.unit_of_measurement.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col">
+                    <label for="{{ form.material.id_for_label }}" class="form-label">Material</label>
+                    {{ form.material|add_class:"form-control" }}
+                    {% if form.material.errors %}
+                        <div class="text-danger">
+                            {% for error in form.material.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Color and Brand on the same line -->
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="{{ form.color.id_for_label }}" class="form-label">Color</label>
+                    {{ form.color|add_class:"form-control" }}
+                    {% if form.color.errors %}
+                        <div class="text-danger">
+                            {% for error in form.color.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col">
+                    <label for="{{ form.brand.id_for_label }}" class="form-label">Brand</label>
+                    {{ form.brand|add_class:"form-control" }}
+                    {% if form.brand.errors %}
+                        <div class="text-danger">
+                            {% for error in form.brand.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Tech Spec 1 and Value -->
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="{{ form.tech_spec_01.id_for_label }}" class="form-label">Technical Specification 1</label>
+                    {{ form.tech_spec_01|add_class:"form-control" }}
+                    {% if form.tech_spec_01.errors %}
+                        <div class="text-danger">
+                            {% for error in form.tech_spec_01.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col">
+                    <label for="{{ form.tech_spec_01_value.id_for_label }}" class="form-label">Value 1</label>
+                    {{ form.tech_spec_01_value|add_class:"form-control" }}
+                    {% if form.tech_spec_01_value.errors %}
+                        <div class="text-danger">
+                            {% for error in form.tech_spec_01_value.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Tech Spec 2 and Value -->
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="{{ form.tech_spec_02.id_for_label }}" class="form-label">Technical Specification 2</label>
+                    {{ form.tech_spec_02|add_class:"form-control" }}
+                    {% if form.tech_spec_02.errors %}
+                        <div class="text-danger">
+                            {% for error in form.tech_spec_02.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col">
+                    <label for="{{ form.tech_spec_02_value.id_for_label }}" class="form-label">Value 2</label>
+                    {{ form.tech_spec_02_value|add_class:"form-control" }}
+                    {% if form.tech_spec_02_value.errors %}
+                        <div class="text-danger">
+                            {% for error in form.tech_spec_02_value.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Tech Spec 3 and Value -->
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="{{ form.tech_spec_03.id_for_label }}" class="form-label">Technical Specification 3</label>
+                    {{ form.tech_spec_03|add_class:"form-control" }}
+                    {% if form.tech_spec_03.errors %}
+                        <div class="text-danger">
+                            {% for error in form.tech_spec_03.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col">
+                    <label for="{{ form.tech_spec_03_value.id_for_label }}" class="form-label">Value 3</label>
+                    {{ form.tech_spec_03_value|add_class:"form-control" }}
+                    {% if form.tech_spec_03_value.errors %}
+                        <div class="text-danger">
+                            {% for error in form.tech_spec_03_value.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100 mb-3" style="width: auto; margin-top: 10px;">Save</button>
+        </form>
+    </div> <!-- End card-body -->
+</div> <!-- End card -->
+
+<!-- Back to Products -->
+ <div class="my-3">
+    <a href="{% url 'product-list' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to Products
+    </a>
+ </div>
+
+
+{% endblock %}

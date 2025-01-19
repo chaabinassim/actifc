@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Store List</h2>
+    <a href="{% url 'store_create' %}" class="btn btn-success mb-3">Create Store</a> <!-- Create Store Button -->
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Contact Email</th>
+                <th>Contact Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for store in stores %}
+            <tr>
+                <td>{{ store.name }}</td>
+                <td>{{ store.location }}</td>
+                <td>{{ store.contact_email }}</td>
+                <td>{{ store.contact_phone }}</td>
+                <td>
+                    <a href="{% url 'store_update' store.id %}" class="btn btn-primary btn-sm">Edit</a> <!-- Edit button -->
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No stores found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

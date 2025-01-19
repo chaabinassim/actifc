@@ -17,10 +17,19 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
+from .views import home_view,CustomLogoutView,CustomLoginView,signup
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    path('', home_view, name='home'),  # Set the home view as the root URL
     path('admin/', admin.site.urls),
+    # Authentication URLs
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('logout/', CustomLogoutView.as_view(), name='logout'),
+     path('signup/', signup, name='signup'),
+
+    path('inventory/', include('inventory.urls')),
 ]
 
 
