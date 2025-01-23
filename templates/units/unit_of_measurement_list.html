@@ -1,52 +1,48 @@
 {% extends "base/base.html" %}
 
-{% block title %}Products{% endblock %}
+{% block title %}Units of Measurement{% endblock %}
 
 {% block content %}
-<div id="products-list" class="container mt-4" data-list='{"valueNames":["name", "subcategory", "brand", "material", "stock"], "page": 10, "pagination": true}'>
-    <h1 class="mb-4">Products</h1>
-    <a href="{% url 'product-create' %}" class="btn btn-secondary mb-3">
-        <span class="fas fa-plus me-2"></span>Create New Product
+<div id="units-list" class="container mt-4" data-list='{"valueNames":["unit_id", "unit_name", "abbreviation"], "page": 5, "pagination": true}'>
+    <h1 class="mb-4">Units of Measurement</h1>
+    <a href="{% url 'unit-of-measurement-create' %}" class="btn btn-secondary mb-3">
+        <span class="fas fa-plus me-2"></span>Create New Unit
     </a>
 
-    <!-- Products Card -->
+    <!-- Units of Measurement Card -->
     <div class="card">
         <div class="card-body">
             <!-- Search Box -->
             <div class="row mb-3">
                 <div class="col-md-4">
-                    <input class="search form-control" placeholder="Search products..." />
+                    <input class="search form-control" placeholder="Search units..." />
                 </div>
             </div>
 
-            <!-- Products Table -->
+            <!-- Units Table -->
             <div class="table-responsive">
                 <table class="table table-striped table-sm fs-9 mb-0">
                     <thead>
                         <tr>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Name</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="subcategory">Subcategory</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="brand">Brand</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="material">Material</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="stock">Stock</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="unit_id">Unit ID</th>
+                            <th class="sort border-top" data-sort="unit_name">Unit Name</th>
+                            <th class="sort border-top" data-sort="abbreviation">Abbreviation</th>
                             <th class="sort text-end align-middle pe-0 border-top" scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="list">
-                        {% for product in products %}
+                        {% for unit in units %}
                         <tr>
-                            <td class="align-middle ps-3 name">{{ product.name }}</td>
-                            <td class="align-middle ps-3 subcategory">{{ product.sub_category.name }}</td>
-                            <td class="align-middle ps-3 brand">{{ product.brand|default:"N/A" }}</td>
-                            <td class="align-middle ps-3 material">{{ product.material.name|default:"N/A" }}</td>
-                            <td class="align-middle ps-3 stock">{{ product.stock }}</td>
+                            <td class="align-middle ps-3 unit_id">{{ unit.id }}</td>
+                            <td class="align-middle unit_name">{{ unit.unit_name }}</td>
+                            <td class="align-middle abbreviation">{{ unit.abbreviation|default:"-" }}</td>
                             <td class="align-middle white-space-nowrap text-end pe-0">
                                 <div class="btn-reveal-trigger position-static">
                                     <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                         <span class="fas fa-ellipsis-h fs-10"></span>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end py-2">
-                                        <a class="dropdown-item" href="{% url 'product-update' product.id %}">Edit</a>
+                                        <a class="dropdown-item" href="{% url 'unit-of-measurement-update' unit.id %}">Edit</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item text-danger" href="#!">Delete</a>
                                     </div>
@@ -55,7 +51,7 @@
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="6" class="text-center">No products available</td>
+                            <td colspan="4" class="text-center">No units available</td>
                         </tr>
                         {% endfor %}
                     </tbody>

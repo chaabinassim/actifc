@@ -1,0 +1,45 @@
+{% extends "base/base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<h1 class="mb-3">{{ view.object.pk|default:"Create" }} Technical Specification</h1>
+<div class="card" style="max-width: 500px;">
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            
+            <!-- Name Field -->
+            <div class="mb-3">
+                <label for="{{ form.name.id_for_label }}" class="form-label">Technical Specification Name</label>
+                {{ form.name|add_class:"form-control form-icon-input" }}
+                {% if form.name.errors %}
+                    <div class="text-danger">
+                        {% for error in form.name.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Symbol Field -->
+            <div class="mb-3">
+                <label for="{{ form.symbol.id_for_label }}" class="form-label">Symbol</label>
+                {{ form.symbol|add_class:"form-control form-icon-input" }}
+                {% if form.symbol.errors %}
+                    <div class="text-danger">
+                        {% for error in form.symbol.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-success w-100 mb-3">Save</button>
+        </form>
+        <a href="{% url 'tech-spec-list' %}" class="btn btn-light">
+            <span class="fas fa-arrow-left"></span> Back to Technical Specifications
+        </a>
+    </div>
+</div>
+{% endblock %}

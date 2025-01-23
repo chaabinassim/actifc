@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, ListView
-from .models import Category, SubCategory, Product,Store
+from .models import Category, SubCategory, Product,Store,UnitOfMeasurement, TechSpec, Material
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.contrib import messages
@@ -153,3 +153,58 @@ class StoreUpdateView(LoginRequiredMixin, UpdateView):
     
 
 
+# UnitOfMeasurement Views
+class UnitOfMeasurementListView(ListView):
+    model = UnitOfMeasurement
+    template_name = 'units/unit_of_measurement_list.html'
+    context_object_name = 'units'
+
+class UnitOfMeasurementCreateView(CreateView):
+    model = UnitOfMeasurement
+    fields = ['unit_name', 'abbreviation']
+    template_name = 'units/unit_of_measurement_form.html'
+    success_url = reverse_lazy('unit-of-measurement-list')
+
+class UnitOfMeasurementUpdateView(UpdateView):
+    model = UnitOfMeasurement
+    fields = ['unit_name', 'abbreviation']
+    template_name = 'units/unit_of_measurement_form.html'
+    success_url = reverse_lazy('unit-of-measurement-list')
+
+
+# TechSpec Views
+class TechSpecListView(ListView):
+    model = TechSpec
+    template_name = 'tech/tech_spec_list.html'
+    context_object_name = 'tech_specs'
+
+class TechSpecCreateView(CreateView):
+    model = TechSpec
+    fields = ['name', 'symbol']  # Include the new 'symbol' field
+    template_name = 'tech/tech_spec_form.html'
+    success_url = reverse_lazy('tech-spec-list')
+
+class TechSpecUpdateView(UpdateView):
+    model = TechSpec
+    fields = ['name', 'symbol']  # Include the new 'symbol' field
+    template_name = 'tech/tech_spec_form.html'
+    success_url = reverse_lazy('tech-spec-list')
+
+
+# Material Views
+class MaterialListView(ListView):
+    model = Material
+    template_name = 'material/material_list.html'
+    context_object_name = 'materials'
+
+class MaterialCreateView(CreateView):
+    model = Material
+    fields = ['name']
+    template_name = 'material/material_form.html'
+    success_url = reverse_lazy('material-list')
+
+class MaterialUpdateView(UpdateView):
+    model = Material
+    fields = ['name']
+    template_name = 'material/material_form.html'
+    success_url = reverse_lazy('material-list')

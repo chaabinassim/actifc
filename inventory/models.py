@@ -73,7 +73,7 @@ class UnitOfMeasurement(models.Model):
 
 class TechSpec(models.Model):
     name = models.CharField(max_length=255, unique=True, verbose_name="Technical Specification Name")
-
+    symbol = models.CharField(max_length=50, unique=True, verbose_name="Symbol",null=True,blank=True)
     def __str__(self):
         return self.name
 

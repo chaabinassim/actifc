@@ -1,0 +1,77 @@
+{% extends "base/base.html" %}
+
+{% block title %}Technical Specifications{% endblock %}
+
+{% block content %}
+<div id="tech-spec-list" class="container mt-4" data-list='{"valueNames":["tech_spec_id", "name", "symbol"], "page": 5, "pagination": true}'>
+    <h1 class="mb-4">Technical Specifications</h1>
+    <a href="{% url 'tech-spec-create' %}" class="btn btn-success mb-3">
+        <span class="fas fa-plus me-2"></span>Create New Technical Specification
+    </a>
+
+    <!-- Technical Specifications Card -->
+    <div class="card">
+        <div class="card-body">
+            <!-- Search Box -->
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <input class="search form-control" placeholder="Search technical specifications..." />
+                </div>
+            </div>
+
+            <!-- Technical Specifications Table -->
+            <div class="table-responsive">
+                <table class="table table-striped table-sm fs-9 mb-0">
+                    <thead>
+                        <tr>
+                            <th class="sort border-top ps-3" data-sort="tech_spec_id">ID</th>
+                            <th class="sort border-top" data-sort="name">Name</th>
+                            <th class="sort border-top" data-sort="symbol">Symbol</th>
+                            <th class="sort text-end align-middle pe-0 border-top">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list">
+                        {% for tech_spec in tech_specs %}
+                        <tr>
+                            <td class="align-middle ps-3 tech_spec_id">{{ tech_spec.id }}</td>
+                            <td class="align-middle name">{{ tech_spec.name }}</td>
+                            <td class="align-middle symbol">{{ tech_spec.symbol }}</td>
+                            <td class="align-middle white-space-nowrap text-end pe-0">
+                                <div class="btn-reveal-trigger position-static">
+                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                        <span class="fas fa-ellipsis-h fs-10"></span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end py-2">
+                                        <a class="dropdown-item" href="{% url 'tech-spec-update' tech_spec.id %}">Edit</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger" href="#!">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center">No technical specifications available</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div class="d-flex justify-content-between mt-3">
+                <span class="d-none d-sm-inline-block" data-list-info="data-list-info"></span>
+                <div class="d-flex">
+                    <button class="page-link" data-list-pagination="prev">
+                        <span class="fas fa-chevron-left"></span>
+                    </button>
+                    <ul class="mb-0 pagination"></ul>
+                    <button class="page-link pe-0" data-list-pagination="next">
+                        <span class="fas fa-chevron-right"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
