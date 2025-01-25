@@ -80,23 +80,15 @@
               <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3">
                   <a class="d-flex flex-center text-decoration-none mb-4" href="{% url 'home' %}">
                       <div class="d-flex align-items-center fw-bolder fs-3 d-inline-block">
-                          <img src="{% static 'assets/img/icons/logo.png' %}" alt="phoenix" width="58" />
+
                       </div>
                   </a>
                   <div class="text-center mb-7">
                       <h3 class="text-body-highlight">Sign In</h3>
                       <p class="text-body-tertiary">Get access to your account</p>
                   </div>
-                  <button class="btn btn-phoenix-secondary w-100 mb-3">
-                      <span class="fab fa-google text-danger me-2 fs-9"></span>Sign in with Google
-                  </button>
-                  <button class="btn btn-phoenix-secondary w-100">
-                      <span class="fab fa-facebook text-primary me-2 fs-9"></span>Sign in with Facebook
-                  </button>
-                  <div class="position-relative">
-                      <hr class="bg-body-secondary mt-5 mb-4" />
-                      <div class="divider-content-center">or use your username</div>
-                  </div>
+                 
+                 
                   <form method="post" action="{% url 'login' %}">
                       {% csrf_token %}
                        <!-- Non-Field Errors -->

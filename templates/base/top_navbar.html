@@ -293,31 +293,114 @@
           <div class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 dropdown-nine-dots shadow border" aria-labelledby="navbarDropdownNindeDots">
             <div class="card bg-body-emphasis position-relative border-0">
               <div class="card-body pt-3 px-3 pb-0 overflow-auto scrollbar" style="height: 20rem;">
+               
                 <div class="row text-center align-items-center gx-0 gy-0">
                   <!-- Supply Demands -->
                   <div class="col-4">
-                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'supply-demand-list' %}">
-                      <i class="fas fa-box-open fa-2x text-primary"></i>
-                      <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Supply Demands</p>
-                    </a>
+                      <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'supply-demand-list' %}">
+                          <i class="fas fa-box-open fa-2x text-primary"></i>
+                          <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Supply Demands</p>
+                      </a>
                   </div>
-                
+              
                   <!-- Supply Demand Reviews -->
                   <div class="col-4">
-                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'supply-demand-review-list' %}">
-                      <i class="fas fa-file-alt fa-2x text-success"></i>
-                      <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Reviews</p>
-                    </a>
+                      <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'supply-demand-review-list' %}">
+                          <i class="fas fa-file-alt fa-2x text-success"></i>
+                          <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Reviews</p>
+                      </a>
                   </div>
-                
+              
                   <!-- Supply Orders -->
                   <div class="col-4">
-                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'supply_order_list' %}">
-                      <i class="fas fa-shopping-cart fa-2x text-warning"></i>
-                      <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Orders</p>
-                    </a>
+                      <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'supply_order_list' %}">
+                          <i class="fas fa-shopping-cart fa-2x text-warning"></i>
+                          <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Orders</p>
+                      </a>
                   </div>
-                </div>
+              
+                  <!-- Category Links -->
+                  <div class="col-4">
+                      <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'category-list' %}">
+                          <i class="fas fa-tags fa-2x text-info"></i>
+                          <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Categories</p>
+                      </a>
+                  </div>
+              
+                  <!-- SubCategory Links -->
+                  <div class="col-4">
+                      <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'subcategory-list' %}">
+                          <i class="fas fa-cogs fa-2x text-secondary"></i>
+                          <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Subcategories</p>
+                      </a>
+                  </div>
+              
+                  <!-- Product Links -->
+                  <div class="col-4">
+                      <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'product-list' %}">
+                          <i class="fas fa-cogs fa-2x text-info"></i>
+                          <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Products</p>
+                      </a>
+                  </div>
+              
+                  <!-- Store Links -->
+                  <div class="col-4">
+                      <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'store_list' %}">
+                          <i class="fas fa-store fa-2x text-warning"></i>
+                          <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Stores</p>
+                      </a>
+                  </div>
+              
+                  <!-- Unit Of Measurement Links -->
+                  <div class="col-4">
+                      <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'unit-of-measurement-list' %}">
+                          <i class="fas fa-ruler fa-2x text-primary"></i>
+                          <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Units</p>
+                      </a>
+                  </div>
+              
+                  <!-- TechSpec Links -->
+                  <div class="col-4">
+                      <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'tech-spec-list' %}">
+                          <i class="fas fa-sliders-h fa-2x text-success"></i>
+                          <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Tech Specs</p>
+                      </a>
+                  </div>
+              
+                  <!-- Material Links -->
+                  <div class="col-4">
+                      <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'material-list' %}">
+                          <i class="fas fa-cogs fa-2x text-info"></i>
+                          <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Materials</p>
+                      </a>
+                  </div>
+              
+                  <!-- Project Links -->
+                  <div class="col-4">
+                      <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'project-list' %}">
+                          <i class="fas fa-project-diagram fa-2x text-primary"></i>
+                          <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Projects</p>
+                      </a>
+                  </div>
+              
+                  <!-- Purchase Demand Links -->
+                  <div class="col-4">
+                      <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'purchase-demand-list' %}">
+                          <i class="fas fa-hand-holding-usd fa-2x text-info"></i>
+                          <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Purchase Demands</p>
+                      </a>
+                  </div>
+              
+                  <!-- Purchase Command Links -->
+                  <div class="col-4">
+                      <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="{% url 'bon_de_commande_list' %}">
+                          <i class="fas fa-file-invoice fa-2x text-warning"></i>
+                          <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Purchase Commands</p>
+                      </a>
+                  </div>
+              </div>
+              
+              
               </div>
             </div>
           </div>
