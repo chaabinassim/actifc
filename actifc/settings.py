@@ -36,7 +36,7 @@ IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
 
 
 DEBUG = True
-
+ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
