@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Demand Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        td, th {
+            padding: 8px;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            width: 50px;
+            height: auto;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .header-table {
+            width: 100%;
+            border: none;
+            margin-top: 20px;
+        }
+
+        .footer-table {
+            width: 100%;
+            border: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<div class="container">
+    <table class="header-table">
+        <tr>
+            <td rowspan="3" class="text-center" style="width: 40%; padding: 8px;">
+                <img src="{{ logo_url }}" alt="Logo" width="137">
+            </td>
+            <td colspan="2" class="text-center" style="padding: 8px;">
+                <strong>Demande d'Achat</strong>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center" style="padding: 8px;">
+                <strong>Code:</strong> ACT-02-02
+            </td>
+            <td class="text-center" style="padding: 8px;">
+                <strong>Version:</strong> V0
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center" style="padding: 8px;">
+                <strong>Date d’application:</strong> 29/08/2023
+            </td>
+            <td class="text-center" style="padding: 8px;">
+                <strong>Page:</strong> <pdf:pagenumber/> of <pdf:pagecount/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- Content Section -->
+<div class="container">
+    <h2>Purchase Demand Details</h2>
+    <table>
+        <tbody>
+            <tr>
+                <th class="text-left" style="width: 25%;">Demand ID:</th>
+                <td>{{ purchase_demand.id }}</td>
+            </tr>
+            <tr>
+                <th class="text-left">Demander:</th>
+                <td>{{ purchase_demand.demander.get_full_name|default:purchase_demand.demander.username }}</td>
+            </tr>
+            <tr>
+                <th class="text-left">Created At:</th>
+                <td>{{ purchase_demand.created_at|date:"Y-m-d H:i" }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Purchase Demand Items</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Designation</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in purchase_demand.items.all %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.designation }}</td>
+                <td>{{ item.quantity }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" class="text-center">No items found for this purchase demand.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Footer Section -->
+<div class="container">
+    <table class="footer-table">
+        <tr>
+            <td class="text-left">
+                <strong>Footer Row 1, Column 1</strong>
+            </td>
+            <td class="text-left">
+                <strong>Footer Row 1, Column 2</strong>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">
+                <strong>Footer Row 2, Column 1</strong>
+            </td>
+            <td class="text-left">
+                <strong>Footer Row 2, Column 2</strong>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

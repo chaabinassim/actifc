@@ -1,0 +1,76 @@
+{% extends "base/base.html" %}
+
+{% block title %}Purchase Demand Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Purchase Demand Details</h1>
+
+    <!-- Card Wrapper -->
+    <div class="card">
+        <div class="card-body">
+            <!-- Back Button -->
+            <a href="{% url 'purchase-demand-list' %}" class="btn btn-secondary mb-3">
+                <span class="fas fa-arrow-left me-2"></span> Back to Purchase Demands
+            </a>
+
+            <!-- Link to create Bon -->
+            <a href="{% url 'create_bon_de_commande' purchase_demand_id=purchase_demand.id %}" class="btn btn-primary mb-3">
+                <span class="fas fa-plus-circle me-2"></span> Create Bon
+            </a>
+
+            <!-- Download PDF Button -->
+            <a href="{% url 'purchase_demand_pdf' pk=purchase_demand.id %}" class="btn btn-success mb-3">
+                <span class="fas fa-download me-2"></span> Download Purchase Demand PDF
+            </a>
+
+            <!-- Purchase Demand Details -->
+            <table class="table table-bordered table-sm">
+                <tbody>
+                    <tr>
+                        <th scope="row">Demand ID:</th>
+                        <td>{{ purchase_demand.id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Demander:</th>
+                        <td>{{ purchase_demand.demander.get_full_name|default:purchase_demand.demander.username }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Created At:</th>
+                        <td>{{ purchase_demand.created_at|date:"Y-m-d H:i" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Purchase Demand Items -->
+    <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="mb-3">Purchase Demand Items</h2>
+            <table class="table table-bordered table-sm fs-9 mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Designation</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in purchase_demand.items.all %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ item.designation }}</td>
+                        <td>{{ item.quantity }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center">No items found for this purchase demand.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

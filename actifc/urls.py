@@ -25,9 +25,9 @@ urlpatterns = [
     path('', home_view, name='home'),  # Set the home view as the root URL
     path('admin/', admin.site.urls),
     # Authentication URLs
-    path('login/', CustomLoginView.as_view(), name='login'),
-    path('logout/', CustomLogoutView.as_view(), name='logout'),
-     path('signup/', signup, name='signup'),
+    path('accounts/login/', CustomLoginView.as_view(), name='login'),
+    path('accounts/logout/', CustomLogoutView.as_view(), name='logout'),
+    path('accounts/signup/', signup, name='signup'),
 
     path('inventory/', include('inventory.urls')),
 ]

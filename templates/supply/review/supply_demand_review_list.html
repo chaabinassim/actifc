@@ -1,0 +1,78 @@
+{% extends "base/base.html" %}
+
+{% block title %}Supply Demand Reviews{% endblock %}
+
+{% block content %}
+<div id="supply-demand-review-list" class="container mt-4" data-list='{"valueNames":["review-id", "store-name", "reviewer", "review-date", "review-time", "demander"], "page": 10,"pagination":true}'>
+    <h1 class="mb-4">Supply Demand Reviews</h1>
+    
+    <!-- Card Wrapper -->
+    <div class="card">
+        <div class="card-body">
+            <!-- Search Bar -->
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <input class="search form-control" placeholder="Search reviews..." />
+                </div>
+            </div>
+
+            <!-- Responsive Table -->
+            <div class="table-responsive">
+                <table class="table table-striped table-sm fs-9 mb-0">
+                    <thead>
+                        <tr>
+                            <th class="sort border-top border-translucent ps-3" data-sort="review-id">#</th>
+                            <th class="sort border-top" data-sort="store-name">Store</th>
+                            <th class="sort border-top" data-sort="reviewer">Reviewer</th>
+                            <th class="sort border-top" data-sort="review-date">Date</th>
+                            <th class="sort border-top" data-sort="review-time">Time</th>
+                            <th class="sort border-top" data-sort="demander">Demander</th>
+                            <th class="sort border-top text-end align-middle pe-0 border-top" scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list">
+                        {% for review in reviews %}
+                        <tr>
+                            <td class="align-middle ps-3 review-id">{{ forloop.counter }}</td>
+                            <td class="align-middle store-name">{{ review.store.name }}</td>
+                            <td class="align-middle reviewer">{{ review.reviewer.username }}</td>
+                            <td class="align-middle review-date">{{ review.date }}</td>
+                            <td class="align-middle review-time">{{ review.time }}</td>
+                            <td class="align-middle demander">{{ review.supply_demand.demander}}</td>
+                            <td class="align-middle white-space-nowrap text-end pe-0">
+                                <div class="btn-reveal-trigger position-static">
+                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                        <span class="fas fa-ellipsis-h fs-10"></span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end py-2">
+                                        <a class="dropdown-item" href="{% url 'supply-demand-review-detail' review.id %}">View</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="7" class="text-center">No reviews found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div class="d-flex justify-content-between mt-3">
+                <span class="d-none d-sm-inline-block" data-list-info="data-list-info"></span>
+                <div class="d-flex">
+                    <button class="page-link" data-list-pagination="prev">
+                        <span class="fas fa-chevron-left"></span>
+                    </button>
+                    <ul class="mb-0 pagination"></ul>
+                    <button class="page-link pe-0" data-list-pagination="next">
+                        <span class="fas fa-chevron-right"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Supply Demand Review - Details</h2>
+
+    <!-- Supply Demand Review Information -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Review Information</h5>
+            <table class="table table-bordered table-sm">
+                <tbody>
+                    <tr>
+                        <th scope="row">Review ID</th>
+                        <td>{{ review.id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Store</th>
+                        <td>{{ review.store.name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Reviewer</th>
+                        <td>{{ review.reviewer.username }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date</th>
+                        <td>{{ review.date }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Time</th>
+                        <td>{{ review.time }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Supply Demand Review Items -->
+    <h5>Review Items</h5>
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm fs-9 mb-0">
+                    <thead>
+                        <tr>
+                            <th class="border-top border-translucent ps-3">Product</th>
+                            <th class="border-top">Available Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in review.review_items.all %}
+                        <tr>
+                            <td class="align-middle ps-3">
+                                {% if item.product %}
+                                    {{ item.product.name }}
+                                {% else %}
+                                    No Product
+                                {% endif %}
+                            </td>
+                            <td class="align-middle">{{ item.available_quantity }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="2" class="text-center">No items found</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Supply Order Button -->
+    <div class="mt-4">
+        <a href="{% url 'create_supply_order' review.id %}" class="btn btn-primary">Create Supply Order</a>
+    </div>
+
+</div>
+{% endblock %}

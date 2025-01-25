@@ -1,0 +1,72 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Bon De Commande - Details</h2>
+
+    <!-- Bon De Commande Information -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Bon De Commande Information</h5>
+            <table class="table table-bordered table-sm">
+                <tbody>
+                    <tr>
+                        <th scope="row">Bon De Commande ID</th>
+                        <td>{{ bon_de_commande.id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Store</th>
+                        <td>{{ bon_de_commande.store.name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Supplier</th>
+                        <td>{{ bon_de_commande.supplier.name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date</th>
+                        <td>{{ bon_de_commande.date }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Total Amount</th>
+                        <td>{{ bon_de_commande.total_amount }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bon De Commande Items -->
+    <h5>Bon De Commande Items</h5>
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm fs-9 mb-0">
+                    <thead>
+                        <tr>
+                            <th class="border-top border-translucent ps-3">Product</th>
+                            <th class="border-top">Quantity</th>
+                            <th class="border-top">Unit Price</th>
+                            <th class="border-top">Total Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in bon_de_commande.items.all %}
+                        <tr>
+                            <td class="align-middle ps-3">{{ item.product.name }}</td>
+                            <td class="align-middle">{{ item.ordered_quantity }}</td>
+                            <td class="align-middle">{{ item.unit_price }}</td>
+                            <td class="align-middle">{{ item.total_price }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center">No items found</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

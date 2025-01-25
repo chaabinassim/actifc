@@ -1,0 +1,77 @@
+{% extends "base/base.html" %}
+
+{% block title %}Purchase Demands{% endblock %}
+
+{% block content %}
+<div id="purchase-demand-list" class="container mt-4" data-list='{"valueNames":["demand-id", "demander", "created-at"], "page": 10,"pagination":true}'>
+    <h1 class="mb-4">Purchase Demands</h1>
+    
+    <!-- Card Wrapper -->
+    <div class="card">
+        <div class="card-body">
+            <!-- Create Purchase Demand Button -->
+            <a href="{% url 'create-purchase-demand' %}" class="btn btn-primary mb-3">
+                <span class="fas fa-plus me-2"></span> Create New Purchase Demand
+            </a>
+
+            <!-- Search Bar -->
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <input class="search form-control" placeholder="Search purchase demands..." />
+                </div>
+            </div>
+
+            <!-- Responsive Table -->
+            <div class="table-responsive">
+                <table class="table table-striped table-sm fs-9 mb-0">
+                    <thead>
+                        <tr>
+                            <th class="sort border-top border-translucent ps-3" data-sort="demand-id">Demand ID</th>
+                            <th class="sort border-top" data-sort="demander">Demander</th>
+                            <th class="sort border-top" data-sort="created-at">Created At</th>
+                            <th class="sort border-top text-end align-middle pe-0 border-top" scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list">
+                        {% for purchase_demand in purchase_demands %}
+                        <tr>
+                            <td class="align-middle ps-3 demand-id">{{ purchase_demand.id }}</td>
+                            <td class="align-middle demander">{{ purchase_demand.demander.get_full_name|default:purchase_demand.demander.username }}</td>
+                            <td class="align-middle created-at">{{ purchase_demand.created_at|date:"Y-m-d H:i" }}</td>
+                            <td class="align-middle white-space-nowrap text-end pe-0">
+                                <div class="btn-reveal-trigger position-static">
+                                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                        <span class="fas fa-ellipsis-h fs-10"></span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end py-2">
+                                        <a class="dropdown-item" href="{% url 'purchase-demand-detail' purchase_demand.id %}">View Details</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center">No purchase demands available</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div class="d-flex justify-content-between mt-3">
+                <span class="d-none d-sm-inline-block" data-list-info="data-list-info"></span>
+                <div class="d-flex">
+                    <button class="page-link" data-list-pagination="prev">
+                        <span class="fas fa-chevron-left"></span>
+                    </button>
+                    <ul class="mb-0 pagination"></ul>
+                    <button class="page-link pe-0" data-list-pagination="next">
+                        <span class="fas fa-chevron-right"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

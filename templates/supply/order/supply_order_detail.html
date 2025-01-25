@@ -1,0 +1,80 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Supply Order - Details</h2>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Order Information</h5>
+            <table class="table table-bordered table-sm">
+                <tbody>
+                    <tr>
+                        <th scope="row">Order ID</th>
+                        <td>{{ supply_order.id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Store</th>
+                        <td>{{ supply_order.supply_demand_review.store.name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Ordered By</th>
+                        <td>{{ supply_order.ordered_by.username }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Order Date</th>
+                        <td>{{ supply_order.date }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Order Time</th>
+                        <td>{{ supply_order.time }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status</th>
+                        <td>{{ supply_order.get_status_display }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Supply Order Items -->
+    <h5>Order Items</h5>
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm fs-9 mb-0">
+                    <thead>
+                        <tr>
+                            <th class="border-top border-translucent ps-3">Product</th>
+                            <th class="border-top">Available Quantity</th>
+                            <th class="border-top">Ordered Quantity</th>
+                            <th class="border-top">Designation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in supply_order.items.all %}
+                        <tr>
+                            <td class="align-middle ps-3">
+                                {% if item.product %}
+                                    {{ item.product.name }}
+                                {% else %}
+                                    No Product
+                                {% endif %}
+                            </td>
+                            <td class="align-middle">{{ item.available_quantity }}</td>
+                            <td class="align-middle">{{ item.ordered_quantity }}</td>
+                            <td class="align-middle">{{ item.designation }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center">No items found</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

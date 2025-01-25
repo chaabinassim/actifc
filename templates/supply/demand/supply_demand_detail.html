@@ -1,0 +1,75 @@
+{% extends "base/base.html" %}
+
+{% block title %}Supply Demand Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Supply Demand Details</h1>
+
+    <!-- Card Wrapper -->
+    <div class="card">
+        <div class="card-body">
+            <!-- Back Button -->
+            <a href="{% url 'supply-demand-list' %}" class="btn btn-secondary mb-3">
+                <span class="fas fa-arrow-left me-2"></span> Back to Supply Demands
+            </a>
+
+            <!-- Link to create Supply Demand Review -->
+            <a href="{% url 'create_supply_demand_review' supply_demand.id %}" class="btn btn-primary mb-3">
+                <span class="fas fa-plus-circle me-2"></span> Create Supply Demand Review
+            </a>
+
+            <!-- Supply Demand Details -->
+            <table class="table table-bordered table-sm">
+                <tbody>
+                    <tr>
+                        <th scope="row">Demand ID:</th>
+                        <td>{{ supply_demand.id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Project:</th>
+                        <td>{{ supply_demand.project.name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Demander:</th>
+                        <td>{{ supply_demand.demander.get_full_name|default:supply_demand.demander.username }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Created At:</th>
+                        <td>{{ supply_demand.created_at|date:"Y-m-d H:i" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Supply Demand Items -->
+    <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="mb-3">Supply Demand Items</h2>
+            <table class="table table-bordered table-sm fs-9 mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Designation</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in supply_demand.items.all %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ item.designation }}</td>
+                        <td>{{ item.quantity }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center">No items found for this supply demand.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

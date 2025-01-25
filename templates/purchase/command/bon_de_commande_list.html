@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Bon De Commande List</h1>
+
+    <!-- Card Wrapper -->
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Store</th>
+                        <th>Supplier</th>
+                        <th>Date</th>
+                        <th>Total Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bon_de_commande in bon_de_commandes %}
+                    <tr>
+                        <td>{{ bon_de_commande.id }}</td>
+                        <td>{{ bon_de_commande.store.name }}</td>
+                        <td>{{ bon_de_commande.supplier.name }}</td>
+                        <td>{{ bon_de_commande.date }}</td>
+                        <td>{{ bon_de_commande.total_amount }}</td>
+                        <td>
+                            <a href="{% url 'bon_de_commande_detail' bon_de_commande.pk %}" class="btn btn-info btn-sm">View</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center">No orders found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
